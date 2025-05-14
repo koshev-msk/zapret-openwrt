@@ -8,7 +8,11 @@
 WS_USER="daemon"
 
 # override firewall type : iptables,nftables,ipfw
-FWTYPE=nftables
+if [ -x /usr/sbin/iptables -o /usr/sbin/ip6tables -a ! -x /usr/sbin/nft ]; then
+	FWTYPE=iptables
+else
+	FWTYPE=nftables
+fi
 
 # nftables only : set this to 0 to use pre-nat mode. default is post-nat.
 # pre-nat mode disables some bypass techniques for forwarded traffic but allows to see client IP addresses in debug log

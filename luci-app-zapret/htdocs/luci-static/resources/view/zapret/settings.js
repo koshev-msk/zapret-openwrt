@@ -61,7 +61,7 @@ return view.extend({
 
         o = s.taboption(tabname, form.ListValue, 'FWTYPE', _('FWTYPE'));
         o.value('nftables', 'nftables');
-        //o.value('iptables', 'iptables');
+        o.value('iptables', 'iptables');
         //o.value('ipfw',     'ipfw');
 
         o = s.taboption(tabname, form.Flag, 'POSTNAT', _('POSTNAT'));
@@ -92,7 +92,7 @@ return view.extend({
 
         o = s.taboption(tabname, form.ListValue, 'MODE_FILTER', _('MODE_FILTER'));
         //o.value('none',         'none');
-        //o.value('ipset',        'ipset');
+        o.value('ipset',        'ipset');
         o.value('hostlist',     'hostlist');
         o.value('autohostlist', 'autohostlist');
 

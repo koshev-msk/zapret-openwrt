@@ -1,0 +1,12 @@
+
+choice
+	prompt "Firewall support"
+	default NFTABLES
+
+	config NFTABLES
+		bool "nftables"
+
+	config IPTABLES
+		bool "iptables"
+endchoice
+

@@ -27,15 +27,21 @@ include $(INCLUDE_DIR)/package.mk
 
 MAKE_PATH:=nfq
 
+define Package/$(PKG_NAME)/config
+  source "$(SOURCE)/Config.in"
+endef
+
 define Package/$(PKG_NAME)
 	SECTION:=net
 	CATEGORY:=Network
 	TITLE:=$(PKG_NAME)
 	SUBMENU:=Zapret
 	URL:=https://github.com/bol-van/zapret
-	DEPENDS:= +nftables +curl +gzip
+	DEPENDS:= +NFTABLES:nftables +curl +gzip
 	DEPENDS+= +coreutils +coreutils-sort +coreutils-sleep
-	DEPENDS+= +kmod-nft-nat +kmod-nft-offload +kmod-nft-queue
+	DEPENDS+= +NFTABLES:kmod-nft-nat +NFTABLES:kmod-nft-offload +NFTABLES:kmod-nft-queue
+	DEPENDS+= +IPTABLES:iptables +IPTABLES:kmod-ipt-offload +IPTABLES:kmod-ipt-nfqueue +IPTABLES:iptables-mod-nfqueue \
+			+IPTABLES:kmod-ipt-nat-extra +IPTABLES:iptables-mod-nat-extra
 	DEPENDS+= +libnetfilter-queue +libcap +zlib
 endef
 
