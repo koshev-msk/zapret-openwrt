@@ -41,7 +41,7 @@ define Package/$(PKG_NAME)
 	DEPENDS+= +coreutils +coreutils-sort +coreutils-sleep
 	DEPENDS+= +NFTABLES:kmod-nft-nat +NFTABLES:kmod-nft-offload +NFTABLES:kmod-nft-queue
 	DEPENDS+= +IPTABLES:iptables +IPTABLES:kmod-ipt-offload +IPTABLES:kmod-ipt-nfqueue +IPTABLES:iptables-mod-nfqueue \
-			+IPTABLES:kmod-ipt-nat-extra +IPTABLES:iptables-mod-nat-extra
+			  +IPTABLES:kmod-ipt-nat-extra +IPTABLES:iptables-mod-nat-extra +IPTABLES:ipset
 	DEPENDS+= +libnetfilter-queue +libcap +zlib
 endef
 
