@@ -1,6 +1,12 @@
 #!/bin/sh
 # Copyright (c) 2024 remittor
 
+if [ -x /usr/sbin/iptables -o /usr/sbin/ip6tables -a ! -x /usr/sbin/nft ]; then
+        FWTYPE=iptables
+else
+        FWTYPE=nftables
+fi
+
 function set_cfg_default_values
 {
 	local cfgname=${1:-$ZAPRET_CFG_NAME}
@@ -8,7 +14,7 @@ function set_cfg_default_values
 	uci batch <<-EOF
 		set $cfgname.config.run_on_boot='0'
 		# settings for zapret service
-		set $cfgname.config.FWTYPE='nftables'
+		set $cfgname.config.FWTYPE=$FWTYPE
 		set $cfgname.config.POSTNAT='1'
 		set $cfgname.config.FLOWOFFLOAD='none'
 		set $cfgname.config.INIT_APPLY_FW='1'
