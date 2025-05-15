@@ -1,0 +1,11 @@
+--- a/init.d/openwrt/90-zapret
++++ b/init.d/openwrt/90-zapret
+@@ -56,7 +56,7 @@ check_need_to_reload_tpws6()
+ 			fi
+ 			;;
+ 		iptables)
+-			openwrt_fw3 || {
++			openwrt_fw3 && {
+ 				logger -t zapret reloading iptables due to $ACTION of $INTERFACE
+ 				"$ZAPRET" restart_fw
+ 			}
